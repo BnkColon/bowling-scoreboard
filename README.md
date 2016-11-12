@@ -23,3 +23,5 @@ The output should resemble a scoreboard for the game**, something like so:
 | 10 | X  | 7  | 2  | 170   |
 
 ** This could be run when the game isn't over yet.
+
+Bowling Scoreboard Rules
