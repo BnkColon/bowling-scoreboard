@@ -1,4 +1,6 @@
-# The Bowling Problem 
+# Ten-Ping Bowling
+
+## The Bowling Problem: 
 
 Technical part of the interview for a internship with MustWin on Summer 2017
 
@@ -25,17 +27,21 @@ The output should resemble a scoreboard for the game**, something like so:
 
 ** This could be run when the game isn't over yet.
 
-## [Bowling](https://en.wikipedia.org/wiki/Ten-pin_bowling)
+## [Bowling](https://en.wikipedia.org/wiki/Ten-pin_bowling):
 
 Ten-pin bowling is a sport in which a "bowler" rolls a bowling ball down a wood-structure or synthetic (polyurethane) lane and towards ten pins positioned at the end of the lane. The objective is to score points by knocking down as many pins as possible. Three finger holes are drilled into a traditional bowling ball, and weights vary considerably to make the sport playable for all ages. The pins are arranged in a triangular position by an automated machine. While professional ten-pin bowling tournaments are held in numerous countries, the sport is commonly played as a hobby by millions of people around the world.
 
 
-## [Scoring](http://slocums.homestead.com/gamescore.html)
+## [Scoring](http://slocums.homestead.com/gamescore.html):
 
 There are several symbols used when keeping score: an "X" signifies a "strike" in which all ten pins have been knocked down by the first roll of the ball in a frame; a "/" signifies a "spare" in which the remainder of the pins left standing after the first roll are knocked down on the second roll in a frame; a "-" indicates that no pins were knocked down on that roll, called a "miss"; an"F" indicates a "foul" where a part of the bowler's body went past the foul line, which marks the boundry of the approach (the part of the lane where we walk and release the ball) and the lane itself, where the oil is placed and the ball rolls towards the pins; and a "O" around a number indicates that the pins left standing after the first roll are in a formation known as a "split."  Some scorers, such as ours, use an "S" in front of the number to indicate a split.  Splits occur when the headpin (the foremost pin) is knocked down, and there is a gap of at least one pin between all the others left standing.  The terms "wide" and "washout" are used to define this situation except that the headpin was left standing. Sometimes, a "W" is used to indicate this situation, but that has generally gone out of use.
 
-### Special Bonuses
+### Special Bonuses:
 
 For the most part, you keep score by adding the number of pins knocked down in each frame.  Special bonuses are awarded for strikes and spares.  When a strike is bowled, the bowler is awarded the score of 10 (for knocking down all ten pins), plus he gets to add the total of his next two rolls to that frame.  For a spare, the bowler gets the 10, plus the total number of pins knocked down on the next roll only. 
+
+## Online Bowling Game:
+
+[https://www.miniclip.com/games/kingpin-bowling/en/](https://www.miniclip.com/games/kingpin-bowling/en/)
 
 
