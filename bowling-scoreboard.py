@@ -5,13 +5,20 @@
 
 def scoreBoardCalcutator(number):
 	# Frames
-	scoreBoard = dict()
+	scoreBoard = {1: None, 2: None, 3: None, 4: None, 5: None, 6: None, 7: None, 8: None, 9: None, 10: None}
 
 	## Strike
+	if number == 10:
+		print 'Strike'
 
 	## Spare
+	#if number + (number+1) == 10:
+	#	print 'Spare'
 
 	## Miss 
+	if number == 0:
+		print 'Miss'
+
 	return scoreBoard
 
 
@@ -31,6 +38,7 @@ for arg in sys.argv[1:]:
 		# Send all the scores to the Board Calculator
 		for s in score:
 			scoreBoardCalcutator(s)
+
 
 	except IOError:
 		# If can't open the file
