@@ -3,6 +3,9 @@
 # Filename: bowling-scoreboard.py 
 # To run this code: python bowling-scoreboard 8 1 10 5 5 8 0 10 10 9 1 8 1 9 1 10 7 2
 
+def scoreBowling(input):
+	pass
+
 def scoreCalcutator(throw, throw1, throw2):
 	if int(throw) == 10:
 		total = 10 + throw1 + throw2
@@ -24,6 +27,7 @@ def scoreBoardTable(throw1, throw2, last, total):
 	return scoreBoard
 
 
+
 import sys 
 
 # Read all the arguments after bowling-scoreboard
@@ -38,7 +42,7 @@ for arg in sys.argv[1:]:
 		score = score.split()
 		print score
 		
-		# Send all the scores to the Board Calculator
+		# Send the input to score Bowling
 		for s in range(0, len(score),2):
 			if score[s] == '10':
 				total = scoreCalcutator(int(score[s]), int(score[s+1]), int(score[s+2]))
