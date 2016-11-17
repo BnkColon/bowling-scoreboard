@@ -50,15 +50,26 @@ for arg in sys.argv[1:]:
 		
 
 		for s in range(0, len(inputValues)):
-			if frameID <= 10 and finalScoreFrame <= 300: # We are under the limits of the game.
-				
-				if cases[inputValues[s]] == 10: 	# We have a strike!
+			# We are under the limits of the game.
+			if frameID <= 10 and finalScoreFrame <= 300:
+
+				# We are in frame 10 and we have a strike!
+				if frameID == 10 and cases[inputValues[s]] == 10:	
+					print '1010'
 					finalScoreFrame += cases[inputValues[s]] + cases[inputValues[s+1]] + cases[inputValues[s+2]] 
-					tableContent[frameID]=(cases[inputValues[s]], None, None, finalScoreFrame)
+					tableContent[frameID]=('X', cases[inputValues[s+1]], cases[inputValues[s+2]], finalScoreFrame)
+					frameID += 1
+				
+				# We have a strike!
+				elif cases[inputValues[s]] == 10: 	
+					finalScoreFrame += cases[inputValues[s]] + cases[inputValues[s+1]] + cases[inputValues[s+2]] 
+					tableContent[frameID]=('X', None, None, finalScoreFrame)
 					frameID += 1
 					
-				elif cases[inputValues[s]] == 0:	# We have a miss!
-					if tableContent[frameID] == None: # This means that this is the first throw of this frame
+				# We have a miss!	
+				elif cases[inputValues[s]] == 0:
+					# This means that this is the first throw of this frame	
+					if tableContent[frameID] == None: 
 						tableContent[frameID]=(cases[inputValues[s]], None, None, finalScoreFrame)
 						
 					else:
@@ -67,18 +78,22 @@ for arg in sys.argv[1:]:
 						frameID += 1
 
 				else:
-					if tableContent[frameID] == None: # This means that this is the first throw of this frame
+					# This means that this is the first throw of this frame
+					if tableContent[frameID] == None: 
 						tableContent[frameID]=(cases[inputValues[s]], None, None, finalScoreFrame)
 					
 					else:
-						if cases[inputValues[s-1]] + cases[inputValues[s]] == 10: # We have a spare!
+						# We have a spare!
+						if cases[inputValues[s-1]] + cases[inputValues[s]] == 10: 
 							finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] + cases[inputValues[s+1]] 
-							tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], None, finalScoreFrame)
+							tableContent[frameID]=(cases[inputValues[s-1]], '/', None, finalScoreFrame)
 							frameID += 1
+
 						else:
 							finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] 
 							tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], None, finalScoreFrame)
 							frameID += 1
+
 		print tableContent
 
 
