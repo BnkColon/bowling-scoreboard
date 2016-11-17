@@ -5,12 +5,7 @@
 
 def scoreBowling(input):
 	pass
-
-def scoreCalcutator(throw, throw1, throw2):
-	pass
-
-def scoreBoardTable(throw1, throw2, last, total):
-	pass
+	
 
 import sys 
 
@@ -30,6 +25,7 @@ cases = {
     '9' : 9,
     '10': 10}
 
+
 # Read all the arguments after bowling-scoreboard
 for arg in sys.argv[1:]: 
 	try:
@@ -39,12 +35,54 @@ for arg in sys.argv[1:]:
 		# Close file 
 		f.close()
 
-		inputValues = content.split()
-		print inputValues
+		# Split by space and save content in list.
+		inputValues = content.split() 
 		
-		# Send the input to score Bowling
+		# Let the game start!!
+		frameID = 1 			# Frame counter
+		finalScoreFrame = 0		# Final Score
+		
+		# Create empty dictionary
+		tableContent = dict() 			
+
+		# Add the frame keys
+		tableContent = tableContent.fromkeys([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) 
+		
+
 		for s in range(0, len(inputValues)):
-			print type(cases[inputValues[s]])
+			if frameID <= 10 and finalScoreFrame <= 300: # We are under the limits of the game.
+				
+				if cases[inputValues[s]] == 10: 	# We have a strike!
+					finalScoreFrame += cases[inputValues[s]] + cases[inputValues[s+1]] + cases[inputValues[s+2]] 
+					tableContent[frameID]=(cases[inputValues[s]], None, None, finalScoreFrame)
+					frameID += 1
+					
+				elif cases[inputValues[s]] == 0:	# We have a miss!
+					if tableContent[frameID] == None: # This means that this is the first throw of this frame
+						tableContent[frameID]=(cases[inputValues[s]], None, None, finalScoreFrame)
+						
+					else:
+						finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] 
+						tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], None, finalScoreFrame)
+						frameID += 1
+
+				else:
+					if tableContent[frameID] == None: # This means that this is the first throw of this frame
+						tableContent[frameID]=(cases[inputValues[s]], None, None, finalScoreFrame)
+					
+					else:
+						if cases[inputValues[s-1]] + cases[inputValues[s]] == 10: # We have a spare!
+							finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] + cases[inputValues[s+1]] 
+							tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], None, finalScoreFrame)
+							frameID += 1
+						else:
+							finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] 
+							tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], None, finalScoreFrame)
+							frameID += 1
+		print tableContent
+
+
+
 	except IOError:
 		# If can't open the file
 		print 'Cannot open', arg
