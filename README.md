@@ -2,7 +2,7 @@
 
 ## The Bowling Problem: 
 
-Technical part of the interview for a internship with MustWin on Summer 2017
+Technical part of the interview for a internship with [MustWin](http://mustwin.com/) on Summer 2017
 
 This is an application that takes in the number of pins knocked down on each roll, and outputs a scorecard as would be seen at a bowling alley. Including the strikes, spares, and extra frames at the end.
 
