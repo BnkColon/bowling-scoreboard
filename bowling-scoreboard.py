@@ -32,9 +32,9 @@ cases = {
 
 
 # Read all the arguments after bowling-scoreboard.py <numbers>
-
 try:
 	inputValues = sys.argv[1:]
+	
 	# Let the game start!!
 	frameID = 1 			# Frame counter
 	finalScoreFrame = 0		# Final Score
@@ -44,13 +44,13 @@ try:
 
 	# Add the frame keys
 	tableContent = tableContent.fromkeys([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) 
-	if len(inputValues) != 0:
+	if len(inputValues) > 0:
 		try:
 			for s in range(0, len(inputValues)):
-
 				# We are under the limits of the game.
+				
 				if frameID <= 10 and finalScoreFrame <= 300:
-
+					
 					# We are in frame 10 and we have a strike!
 					if frameID == 10 and cases[inputValues[s]] == 10:	
 						finalScoreFrame += cases[inputValues[s]] + cases[inputValues[s+1]] + cases[inputValues[s+2]] 
@@ -87,7 +87,8 @@ try:
 								tableContent[frameID]=(cases[inputValues[s-1]], '/', ' ', finalScoreFrame)
 								frameID += 1
 							elif cases[inputValues[s-1]] + cases[inputValues[s]] > 10:
-								print "Error, it looks like we have an extra pin in the roll, sorry!"
+								print "Error: Looks like we have an extra pin in the roll, sorry!"
+								print "Please throw the ball again."
 							else:
 								finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] 
 								tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], ' ', finalScoreFrame)
@@ -95,7 +96,8 @@ try:
 			
 		except IndexError:
 			# If he can't calculate the Bonus values
-			print "Game not finished yet."
+			print ''
+			print "The game is not over yet. Have Fun!"
 
 		try:
 			# Print the table
@@ -118,14 +120,4 @@ try:
 		print instructions()
 
 except KeyError:
-	print instructions()
-
-
-
-
-
-
-
-
-	
-
+	print instructions()	
