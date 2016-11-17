@@ -61,9 +61,9 @@ tableContent = dict()
 # Add the frame keys
 tableContent = tableContent.fromkeys([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) 
 
-
 try:
 	for s in range(0, len(inputValues)):
+		
 		# We are under the limits of the game.
 		if frameID <= 10 and finalScoreFrame <= 300:
 
@@ -81,6 +81,7 @@ try:
 				
 			# We have a miss!	
 			elif cases[inputValues[s]] == 0:
+
 				# This means that this is the first throw of this frame	
 				if tableContent[frameID] == None: 
 					tableContent[frameID]=(cases[inputValues[s]], ' ', ' ', finalScoreFrame)
@@ -106,14 +107,20 @@ try:
 						finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] 
 						tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], ' ', finalScoreFrame)
 						frameID += 1
+	
+except IndexError:
+	# If he can't calculate the Bonus values
+	print "Game not finished yet."
+
+try:
+	# Print the table
 	print "{:<8} {:<8} {:<8} {:<8} {:<8}".format('FR','R1', 'R2', 'R3', 'Score')
 	for k,v in tableContent.iteritems():
 		r1, r2, r3, total = v
-		print "{:<8} {:<8} {:<8} {:<8} {:<8}".format(k,r1, r2, r3, total)
-	
-except IndexError:
-	print "Game not finished yet, your score until now is %s." % (finalScoreFrame) 
-
+		print "{:<8} {:<8} {:<8} {:<8} {:<8}".format(k,r1, r2, r3, total) 
+except TypeError:
+	# "Can't" handle the 'X', '/' symbols."
+	pass
 
 
 
