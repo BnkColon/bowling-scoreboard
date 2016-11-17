@@ -7,7 +7,7 @@ def instructions():
 	message = ("""--------------------------------------------------------------------------\n"""
 				"""To execude this code you have to write:\n"""
 				"""$ python bowling-scoreboard.py <numbers>\n"""
-				"""<numbers> = Numbers separated by spaces\n"""
+				"""<numbers> = Numbers from 0 - 10, separated by spaces\n"""
 				"""Example: python bowling-scoreboard 8 1 10 5 5 8 0 10 10 9 1 8 1 9 1 10 7 2\n"""
 				"""--------------------------------------------------------------------------""")
 	return message
@@ -44,11 +44,12 @@ try:
 
 	# Add the frame keys
 	tableContent = tableContent.fromkeys([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) 
+
+	# Then we have a game 
 	if len(inputValues) > 0:
 		try:
 			for s in range(0, len(inputValues)):
 				# We are under the limits of the game.
-				
 				if frameID <= 10 and finalScoreFrame <= 300:
 					
 					# We are in frame 10 and we have a strike!
@@ -95,14 +96,16 @@ try:
 								frameID += 1
 			
 		except IndexError:
-			# If he can't calculate the Bonus values
+			# If he can't calculate the Bonus values means the game is not finished.
 			print ''
 			print "The game is not over yet. Have Fun!"
 
 		try:
-			# Print the table
+			# Bold the letters
 			start = "\033[1m"
 			end = "\033[0;0m"
+
+			# Print the table
 			print ""
 			print start+"Bowling Game"+end	
 			print "-------------------------------------------"
@@ -113,6 +116,7 @@ try:
 				print "{:<8} {:<8} {:<8} {:<8} {:<8}".format(k,r1, r2, r3, total) 
 				print "-------------------------------------------"
 			print ""
+
 		except TypeError:
 			# "Can't" handle the 'X', '/' symbols."
 			pass
