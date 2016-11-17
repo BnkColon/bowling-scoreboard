@@ -22,105 +22,100 @@ cases = {
     '10': 10}
 
 
-# Read all the arguments after bowling-scoreboard.py file
+# Read all the arguments after bowling-scoreboard.py <numbers>
 
 try:
-	if len(sys.argv[1:]) == str():
-		# Open the file with scores
-		f = open('./tests/' + str(sys.argv[1]), 'r')
-		content = f.readline()
-		# Close file 
-		f.close()
-		# Split by space and save content in list.
-		inputValues = content.split()
-	else:
-		inputValues = sys.argv[1:]
-		type(inputValues) 
-	
-except IOError:
-	print ''
-	print '--------------------------------------------------------------------------'
-	print 'To execude this code you have to write:'
-	print '$ python bowling-scoreboard.py <filename>'
-	print '<filename> = Name of the file saved in /tests folder'
-	print 'or'
-	print '$ python bowling-scoreboard.py <numbers>'
-	print '<numbers> = Numbers have to be separate by spaces'
-	print 'Example: python bowling-scoreboard 8 1 10 5 5 8 0 10 10 9 1 8 1 9 1 10 7 2'
-	print '--------------------------------------------------------------------------'
-	print ''
+	inputValues = sys.argv[1:]
+	# Let the game start!!
+	frameID = 1 			# Frame counter
+	finalScoreFrame = 0		# Final Score
 
+	# Create empty dictionary
+	tableContent = dict() 			
 
-# Let the game start!!
-frameID = 1 			# Frame counter
-finalScoreFrame = 0		# Final Score
+	# Add the frame keys
+	tableContent = tableContent.fromkeys([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) 
+	if len(inputValues) != 0:
+		try:
+			for s in range(0, len(inputValues)):
 
-# Create empty dictionary
-tableContent = dict() 			
+				# We are under the limits of the game.
+				if frameID <= 10 and finalScoreFrame <= 300:
 
-# Add the frame keys
-tableContent = tableContent.fromkeys([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) 
-
-try:
-	for s in range(0, len(inputValues)):
-		
-		# We are under the limits of the game.
-		if frameID <= 10 and finalScoreFrame <= 300:
-
-			# We are in frame 10 and we have a strike!
-			if frameID == 10 and cases[inputValues[s]] == 10:	
-				finalScoreFrame += cases[inputValues[s]] + cases[inputValues[s+1]] + cases[inputValues[s+2]] 
-				tableContent[frameID]=('X', cases[inputValues[s+1]], cases[inputValues[s+2]], finalScoreFrame)
-				frameID += 1
-			
-			# We have a strike!
-			elif cases[inputValues[s]] == 10: 	
-				finalScoreFrame += cases[inputValues[s]] + cases[inputValues[s+1]] + cases[inputValues[s+2]] 
-				tableContent[frameID]=('X', ' ', ' ', finalScoreFrame)
-				frameID += 1
-				
-			# We have a miss!	
-			elif cases[inputValues[s]] == 0:
-
-				# This means that this is the first throw of this frame	
-				if tableContent[frameID] == None: 
-					tableContent[frameID]=(cases[inputValues[s]], ' ', ' ', finalScoreFrame)
-					
-				else:
-					finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] 
-					tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], ' ', finalScoreFrame)
-					frameID += 1
-
-			else:
-				# This means that this is the first throw of this frame
-				if tableContent[frameID] == None: 
-					tableContent[frameID]=(cases[inputValues[s]], ' ', ' ', finalScoreFrame)
-				
-				else:
-					# We have a spare!
-					if cases[inputValues[s-1]] + cases[inputValues[s]] == 10: 
-						finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] + cases[inputValues[s+1]] 
-						tableContent[frameID]=(cases[inputValues[s-1]], '/', ' ', finalScoreFrame)
+					# We are in frame 10 and we have a strike!
+					if frameID == 10 and cases[inputValues[s]] == 10:	
+						finalScoreFrame += cases[inputValues[s]] + cases[inputValues[s+1]] + cases[inputValues[s+2]] 
+						tableContent[frameID]=('X', cases[inputValues[s+1]], cases[inputValues[s+2]], finalScoreFrame)
 						frameID += 1
+					
+					# We have a strike!
+					elif cases[inputValues[s]] == 10: 	
+						finalScoreFrame += cases[inputValues[s]] + cases[inputValues[s+1]] + cases[inputValues[s+2]] 
+						tableContent[frameID]=('X', ' ', ' ', finalScoreFrame)
+						frameID += 1
+						
+					# We have a miss!	
+					elif cases[inputValues[s]] == 0:
+
+						# This means that this is the first throw of this frame	
+						if tableContent[frameID] == None: 
+							tableContent[frameID]=(cases[inputValues[s]], ' ', ' ', finalScoreFrame)
+							
+						else:
+							finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] 
+							tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], ' ', finalScoreFrame)
+							frameID += 1
 
 					else:
-						finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] 
-						tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], ' ', finalScoreFrame)
-						frameID += 1
-	
-except IndexError:
-	# If he can't calculate the Bonus values
-	print "Game not finished yet."
+						# This means that this is the first throw of this frame
+						if tableContent[frameID] == None: 
+							tableContent[frameID]=(cases[inputValues[s]], ' ', ' ', finalScoreFrame)
+						
+						else:
+							# We have a spare!
+							if cases[inputValues[s-1]] + cases[inputValues[s]] == 10: 
+								finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] + cases[inputValues[s+1]] 
+								tableContent[frameID]=(cases[inputValues[s-1]], '/', ' ', finalScoreFrame)
+								frameID += 1
+							elif cases[inputValues[s-1]] + cases[inputValues[s]] > 10:
+								print "Error, it looks like we have an extra pin in the roll, sorry!"
+							else:
+								finalScoreFrame += cases[inputValues[s-1]] + cases[inputValues[s]] 
+								tableContent[frameID]=(cases[inputValues[s-1]], cases[inputValues[s]], ' ', finalScoreFrame)
+								frameID += 1
+			
+		except IndexError:
+			# If he can't calculate the Bonus values
+			print "Game not finished yet."
 
-try:
-	# Print the table
-	print "{:<8} {:<8} {:<8} {:<8} {:<8}".format('FR','R1', 'R2', 'R3', 'Score')
-	for k,v in tableContent.iteritems():
-		r1, r2, r3, total = v
-		print "{:<8} {:<8} {:<8} {:<8} {:<8}".format(k,r1, r2, r3, total) 
-except TypeError:
-	# "Can't" handle the 'X', '/' symbols."
-	pass
+		try:
+			# Print the table
+			print "{:<8} {:<8} {:<8} {:<8} {:<8}".format('FR','R1', 'R2', 'R3', 'Score')
+			for k,v in tableContent.iteritems():
+				r1, r2, r3, total = v
+				print "{:<8} {:<8} {:<8} {:<8} {:<8}".format(k,r1, r2, r3, total) 
+		except TypeError:
+			# "Can't" handle the 'X', '/' symbols."
+			pass
+	else:
+		print ''
+	 	print '--------------------------------------------------------------------------'
+	 	print 'To execude this code you have to write:'
+		print '$ python bowling-scoreboard.py <numbers>'
+	 	print '<numbers> = Numbers separated by spaces'
+	 	print 'Example: python bowling-scoreboard 8 1 10 5 5 8 0 10 10 9 1 8 1 9 1 10 7 2'
+	 	print '--------------------------------------------------------------------------'
+	 	print '' 
+
+except KeyError:
+	print ''
+ 	print '--------------------------------------------------------------------------'
+ 	print 'To execude this code you have to write:'
+	print '$ python bowling-scoreboard.py <numbers>'
+ 	print '<numbers> = Numbers separated by spaces'
+ 	print 'Example: python bowling-scoreboard 8 1 10 5 5 8 0 10 10 9 1 8 1 9 1 10 7 2'
+ 	print '--------------------------------------------------------------------------'
+ 	print ''
 
 
 
