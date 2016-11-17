@@ -3,6 +3,15 @@
 # Filename: bowling-scoreboard.py 
 # To run this code: python bowling-scoreboard 8 1 10 5 5 8 0 10 10 9 1 8 1 9 1 10 7 2	
 
+def instructions():
+	message = ("""--------------------------------------------------------------------------\n"""
+				"""To execude this code you have to write:\n"""
+				"""$ python bowling-scoreboard.py <numbers>\n"""
+				"""<numbers> = Numbers separated by spaces\n"""
+				"""Example: python bowling-scoreboard 8 1 10 5 5 8 0 10 10 9 1 8 1 9 1 10 7 2\n"""
+				"""--------------------------------------------------------------------------""")
+	return message
+
 import sys 
 
 cases = {
@@ -90,32 +99,30 @@ try:
 
 		try:
 			# Print the table
+			start = "\033[1m"
+			end = "\033[0;0m"
+			print ""
+			print start+"Bowling Game"+end	
+			print "-------------------------------------------"
 			print "{:<8} {:<8} {:<8} {:<8} {:<8}".format('FR','R1', 'R2', 'R3', 'Score')
+			print "-------------------------------------------"
 			for k,v in tableContent.iteritems():
 				r1, r2, r3, total = v
 				print "{:<8} {:<8} {:<8} {:<8} {:<8}".format(k,r1, r2, r3, total) 
+				print "-------------------------------------------"
+			print ""
 		except TypeError:
 			# "Can't" handle the 'X', '/' symbols."
 			pass
 	else:
-		print ''
-	 	print '--------------------------------------------------------------------------'
-	 	print 'To execude this code you have to write:'
-		print '$ python bowling-scoreboard.py <numbers>'
-	 	print '<numbers> = Numbers separated by spaces'
-	 	print 'Example: python bowling-scoreboard 8 1 10 5 5 8 0 10 10 9 1 8 1 9 1 10 7 2'
-	 	print '--------------------------------------------------------------------------'
-	 	print '' 
+		print instructions()
 
 except KeyError:
-	print ''
- 	print '--------------------------------------------------------------------------'
- 	print 'To execude this code you have to write:'
-	print '$ python bowling-scoreboard.py <numbers>'
- 	print '<numbers> = Numbers separated by spaces'
- 	print 'Example: python bowling-scoreboard 8 1 10 5 5 8 0 10 10 9 1 8 1 9 1 10 7 2'
- 	print '--------------------------------------------------------------------------'
- 	print ''
+	print instructions()
+
+
+
+
 
 
 
