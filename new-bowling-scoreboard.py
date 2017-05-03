@@ -43,6 +43,8 @@ def frame():
 	# Add the frame keys
 	frames = frames.fromkeys([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 	
+	for frameNum in range(1,11):
+		frames[frameNum]=[None, None, None, None]
 	#return a dictionary with 10 frames for the game
 	return frames
 
@@ -53,7 +55,7 @@ def frameContent(frameT, frameNumber, content):
 		if content == 10:
 			strike()
 		elif content == 0:
-			
+			pass
 
 	else:
 		print "ERROR"
@@ -126,12 +128,12 @@ def game(inputValues=sys.argv[1:]):
 
 	# 10 clean frames
 	frames = frame()
-	
-	for frameNumber in range(1,11): 
-	# for each number received in sys
-		for number in range(len(inputValues)):
-			# Call stringToInt function to change the values received from sys
-			frameContent(frames, frameNumber, stringToInt(inputValues[number]))
+	print frames
+	# for frameNumber in range(1,11): 
+	# # for each number received in sys
+	# 	for number in range(len(inputValues)):
+	# 		# Call stringToInt function to change the values received from sys
+	# 		frameContent(frames, frameNumber, stringToInt(inputValues[number]))
 			
 if __name__ == '__main__':
     game()
