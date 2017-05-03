@@ -40,8 +40,15 @@ There are several symbols used when keeping score: an **X** signifies a **STRIKE
 
 For the most part, you keep score by adding the number of pins knocked down in each frame.  Special bonuses are awarded for strikes and spares.  When a strike is bowled, the bowler is awarded the score of 10 (for knocking down all ten pins), plus he gets to add the total of his next two rolls to that frame.  For a spare, the bowler gets the 10, plus the total number of pins knocked down on the next roll only. 
 
-## Online Bowling Game:
+## Resources:
+
+### Online Bowling Game:
 
 [https://www.miniclip.com/games/kingpin-bowling/en/](https://www.miniclip.com/games/kingpin-bowling/en/)
+
+###[ASCII Text Signature Generator / Figlet Frontend](http://www.kammerl.de/ascii/AsciiSignature.php) 
+
+Font: 'varsity'
+
 
 
