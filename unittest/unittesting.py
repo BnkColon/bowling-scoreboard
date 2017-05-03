@@ -34,8 +34,7 @@ def suite(inputValues):
 	suite.addTest(testBowlingScore('test_valid_table',inputValues))
 	if len(inputValues) > 20:
 		suite.addTest(testBowlingScore('test_score_lore_300',inputValues))
-	#elif len(inputValues) == None:
-
+	
 
 
 	return suite		
