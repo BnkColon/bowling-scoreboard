@@ -46,7 +46,7 @@ For the most part, you keep score by adding the number of pins knocked down in e
 
 [https://www.miniclip.com/games/kingpin-bowling/en/](https://www.miniclip.com/games/kingpin-bowling/en/)
 
-###[ASCII Text Signature Generator / Figlet Frontend](http://www.kammerl.de/ascii/AsciiSignature.php) 
+### [ASCII Text Signature Generator / Figlet Frontend](http://www.kammerl.de/ascii/AsciiSignature.php) 
 
 Font: 'varsity'
 
